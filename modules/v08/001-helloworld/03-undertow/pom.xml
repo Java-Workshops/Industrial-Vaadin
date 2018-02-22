@@ -11,5 +11,19 @@
 
   <artifactId>vaadin-m-v08-001-helloworld-03-undertow</artifactId>
 
+  <dependencies>
+    <!--Infrastructure-->
+    <dependency>
+      <groupId>io.undertow</groupId>
+      <artifactId>undertow-core</artifactId>
+      <version>${undertow.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.undertow</groupId>
+      <artifactId>undertow-servlet</artifactId>
+      <version>${undertow.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>
