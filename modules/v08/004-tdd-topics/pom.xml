@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>vaadin-m-v08</artifactId>
+    <groupId>org.rapidpm.vaadin.workshop</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>vaadin-m-v08-004-tdd-topics</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>004-tdd-topics-01-junit5</module>
+    <module>004-tdd-topics-02-selenium</module>
+    <module>004-tdd-topics-03-testbench</module>
+    <module>004-tdd-topics-04-best-practices</module>
+  </modules>
+
+
+</project>
