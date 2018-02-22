@@ -32,6 +32,7 @@
     <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
 
     <rapidpm-dependencies.version>3.5.8</rapidpm-dependencies.version>
+    <rapidpm-ddi.version>1.0.3</rapidpm-ddi.version>
     <rapidpm-microservice.version>1.0.3</rapidpm-microservice.version>
     <rapidpm-functional-reactive.version>0.5.1</rapidpm-functional-reactive.version>
 
@@ -50,6 +51,7 @@
     <pitest-junit5-plugin.version>0.4</pitest-junit5-plugin.version>
     <pitest-prod-classes>org.rapidpm.*</pitest-prod-classes>
     <pitest-test-classes>junit.org.rapidpm*</pitest-test-classes>
+    <stagemonitor.version>0.87.4</stagemonitor.version>
   </properties>
 
 
@@ -357,6 +359,58 @@
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
         <version>${slf4j.version}</version>
+      </dependency>
+
+
+
+      <!--Undertow-->
+      <dependency>
+        <groupId>io.undertow</groupId>
+        <artifactId>undertow-core</artifactId>
+        <version>${undertow.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.undertow</groupId>
+        <artifactId>undertow-servlet</artifactId>
+        <version>${undertow.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.undertow</groupId>
+        <artifactId>undertow-websockets-jsr</artifactId>
+        <version>${undertow.version}</version>
+      </dependency>
+
+
+      <!--APM - Stagemonitor-->
+      <dependency>
+        <groupId>org.stagemonitor</groupId>
+        <artifactId>stagemonitor-web-servlet</artifactId>
+        <optional>true</optional>
+        <version>${stagemonitor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.stagemonitor</groupId>
+        <artifactId>stagemonitor-tracing</artifactId>
+        <optional>true</optional>
+        <version>${stagemonitor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.stagemonitor</groupId>
+        <artifactId>stagemonitor-jvm</artifactId>
+        <optional>true</optional>
+        <version>${stagemonitor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.stagemonitor</groupId>
+        <artifactId>stagemonitor-os</artifactId>
+        <optional>true</optional>
+        <version>${stagemonitor.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.stagemonitor</groupId>
+        <artifactId>stagemonitor-tracing-elasticsearch</artifactId>
+        <optional>true</optional>
+        <version>${stagemonitor.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

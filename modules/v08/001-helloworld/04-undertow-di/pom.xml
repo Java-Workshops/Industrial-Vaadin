@@ -12,4 +12,56 @@
   <artifactId>vaadin-m-v08-001-helloworld-04-undertow-di</artifactId>
 
 
+  <dependencies>
+    <dependency>
+      <groupId>org.rapidpm.dynamic-cdi</groupId>
+      <artifactId>rapidpm-dynamic-cdi-modules-core</artifactId>
+      <version>${rapidpm-ddi.version}</version>
+    </dependency>
+
+
+    <!--Undertow-->
+    <dependency>
+      <groupId>io.undertow</groupId>
+      <artifactId>undertow-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.undertow</groupId>
+      <artifactId>undertow-servlet</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.undertow</groupId>
+      <artifactId>undertow-websockets-jsr</artifactId>
+    </dependency>
+    <!--Undertow-->
+
+    <!--APM - Stagemonitor-->
+    <!--APM -->
+    <dependency>
+      <groupId>org.stagemonitor</groupId>
+      <artifactId>stagemonitor-web-servlet</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.stagemonitor</groupId>
+      <artifactId>stagemonitor-tracing</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.stagemonitor</groupId>
+      <artifactId>stagemonitor-jvm</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.stagemonitor</groupId>
+      <artifactId>stagemonitor-os</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.stagemonitor</groupId>
+      <artifactId>stagemonitor-tracing-elasticsearch</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+  </dependencies>
 </project>
