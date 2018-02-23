@@ -18,7 +18,7 @@
     <module>04-attach-detach</module>
     <module>05-ui-access</module>
     <module>06-errors</module>
-    <module>07-streamressources</module>
+    <module>07-streamresources</module>
     <module>08-push</module>
     <module>09-custom-components</module>
     <module>10-i18n</module>
