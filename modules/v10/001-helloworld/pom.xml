@@ -9,20 +9,29 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
+  <packaging>war</packaging>
   <artifactId>vaadin-m-v10-001-helloworld</artifactId>
+
 
 
 
   <dependencies>
     <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin</artifactId>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-dependencies-core-logger</artifactId>
+      <version>${rapidpm-dependencies.version}</version>
     </dependency>
-
     <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-lumo-theme</artifactId>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-functional-reactive</artifactId>
+      <version>${rapidpm-functional-reactive.version}</version>
     </dependency>
   </dependencies>
+
+
+  <!--Testbench ??-->
+
+
+
 
 </project>
