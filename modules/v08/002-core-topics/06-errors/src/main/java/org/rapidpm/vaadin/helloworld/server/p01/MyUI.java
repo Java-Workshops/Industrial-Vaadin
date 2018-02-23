@@ -28,9 +28,9 @@ public class MyUI extends CoreUI {
 
       conf.setDialogText("Shit..  Internet is broken..in different languages");
       conf.setDialogTextGaveUp("ok i gave up.. in different languages");
-      conf.setReconnectAttempts(2);
-      conf.setReconnectInterval(2_000); //[ms]
-      conf.setDialogGracePeriod(4_000); //[ms]
+//      conf.setReconnectAttempts(2);
+//      conf.setReconnectInterval(2_000); //[ms]
+//      conf.setDialogGracePeriod(4_000); //[ms]
 
 
       final Button btnA = new Button();
