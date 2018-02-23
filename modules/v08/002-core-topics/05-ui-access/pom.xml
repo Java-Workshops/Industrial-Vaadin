@@ -11,5 +11,13 @@
 
   <artifactId>vaadin-m-v08-002-core-topics-05-ui-access</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-push</artifactId>
+    </dependency>
+
+  </dependencies>
+
 
 </project>
