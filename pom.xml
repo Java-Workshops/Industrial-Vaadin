@@ -412,6 +412,18 @@
         <optional>true</optional>
         <version>${stagemonitor.version}</version>
       </dependency>
+
+
+      <!--Persistence-->
+      <dependency>
+        <groupId>org.mapdb</groupId>
+        <artifactId>mapdb</artifactId>
+        <version>3.0.5</version>
+      </dependency>
+
+
+
+
     </dependencies>
   </dependencyManagement>
 

@@ -12,4 +12,19 @@
   <artifactId>vaadin-m-v08-002-core-topics-07-streamresources</artifactId>
 
 
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-push</artifactId>
+    </dependency>
+    <!--Persistence-->
+    <dependency>
+      <groupId>org.mapdb</groupId>
+      <artifactId>mapdb</artifactId>
+    </dependency>
+  </dependencies>
+
+
 </project>
