@@ -23,7 +23,7 @@ import static java.util.concurrent.ConcurrentHashMap.newKeySet;
  *
  */
 @Push
-public class MyUI extends CoreUI {
+public class MyUIUIAccess01 extends CoreUI {
 
   public static final Set<Updater> registrations = newKeySet();
 
@@ -48,7 +48,7 @@ public class MyUI extends CoreUI {
     private Registration registration;
 
     public MyFormLayout register() {
-      registration = MyUI.register((msg) -> MyFormLayout.this.message.getUI().access(() -> message.setValue(msg)));
+      registration = MyUIUIAccess01.register((msg) -> MyFormLayout.this.message.getUI().access(() -> message.setValue(msg)));
       return this;
     }
 
@@ -85,7 +85,7 @@ public class MyUI extends CoreUI {
       name = "JumpstartServlet",
       displayName = "JumpstartServlet",
       asyncSupported = true)
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIUIAccess01.class)
   public static class CoreServlet extends VaadinServlet { }
 
   @Override
@@ -94,6 +94,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIUIAccess01().startup();
   }
 }
