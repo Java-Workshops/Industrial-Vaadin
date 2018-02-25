@@ -2,24 +2,13 @@ package org.rapidpm.vaadin.helloworld.server.p02;
 
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.ClassResource;
-import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Image;
 import com.vaadin.ui.Label;
-import org.rapidpm.dependencies.core.logger.HasLogger;
 import org.rapidpm.vaadin.helloworld.server.CoreUI;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.function.Supplier;
 
 /**
@@ -28,7 +17,7 @@ import java.util.function.Supplier;
  * Build a CustomerForm with i18n support
  */
 @PreserveOnRefresh
-public class MyUI extends CoreUI {
+public class MyUIi18N02 extends CoreUI {
 
 
   @Override
@@ -38,7 +27,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIi18N02.class)
   public static class CoreServlet extends VaadinServlet {
   }
 
@@ -48,7 +37,7 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIi18N02().startup();
   }
 
 }

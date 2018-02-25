@@ -4,8 +4,6 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Composite;
-import com.vaadin.ui.VerticalLayout;
 import org.rapidpm.vaadin.helloworld.server.CoreUI;
 import org.rapidpm.vaadin.helloworld.server.PropertyService;
 import org.rapidpm.vaadin.helloworld.server.PropertyServiceInMemory;
@@ -17,7 +15,7 @@ import java.util.function.Supplier;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUIi18N01 extends CoreUI {
 
   @Override
   public Supplier<Component> componentSupplier() {
@@ -34,7 +32,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIi18N01.class)
   public static class CoreServlet extends VaadinServlet {
   }
 
@@ -44,6 +42,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIi18N01().startup();
   }
 }
