@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUIBasic03 extends CoreUI {
 
 
   public Button btn(String caption) {
@@ -43,7 +43,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIBasic03.class)
   public static class CoreServlet extends VaadinServlet { }
 
   @Override
@@ -52,6 +52,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIBasic03().startup();
   }
 }
