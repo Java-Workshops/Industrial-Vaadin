@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUIAttach01 extends CoreUI {
 
   public static class DataHolder {
     private String  name;
@@ -110,7 +110,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIAttach01.class)
   public static class CoreServlet extends VaadinServlet { }
 
   @Override
@@ -119,6 +119,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIAttach01().startup();
   }
 }

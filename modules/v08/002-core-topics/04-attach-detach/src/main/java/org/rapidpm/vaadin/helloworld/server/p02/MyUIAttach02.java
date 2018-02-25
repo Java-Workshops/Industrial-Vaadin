@@ -20,7 +20,7 @@ import static java.util.concurrent.ConcurrentHashMap.newKeySet;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUIAttach02 extends CoreUI {
 
   public static final Set<Updater> registrations = newKeySet();
 
@@ -46,7 +46,7 @@ public class MyUI extends CoreUI {
     private Registration registration;
 
     public void register() {
-      registration = MyUI.register((name, age) -> {
+      registration = MyUIAttach02.register((name, age) -> {
         MyFormLayout.this.name.setValue(name);
         MyFormLayout.this.age.setValue(String.valueOf(age));
       });
@@ -81,7 +81,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIAttach02.class)
   public static class CoreServlet extends VaadinServlet { }
 
   @Override
@@ -90,7 +90,7 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIAttach02().startup();
   }
 
 }
