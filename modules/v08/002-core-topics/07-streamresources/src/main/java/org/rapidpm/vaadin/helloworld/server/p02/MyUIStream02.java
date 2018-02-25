@@ -2,12 +2,10 @@ package org.rapidpm.vaadin.helloworld.server.p02;
 
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.ClassResource;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.Label;
 import org.rapidpm.dependencies.core.logger.HasLogger;
 import org.rapidpm.vaadin.helloworld.server.CoreUI;
 
@@ -26,7 +24,7 @@ import java.util.function.Supplier;
  * will crash on OSX and OpenJDK8 (9 and 10 is ok) -> Linkage error
  */
 @PreserveOnRefresh
-public class MyUI extends CoreUI {
+public class MyUIStream02 extends CoreUI {
 
   public static class MyImageSource implements StreamResource.StreamSource, HasLogger {
 
@@ -83,7 +81,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIStream02.class)
   public static class CoreServlet extends VaadinServlet {
   }
 
@@ -93,7 +91,7 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIStream02().startup();
   }
 
 }

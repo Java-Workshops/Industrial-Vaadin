@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUIStream01 extends CoreUI {
 
 
   @Override
@@ -24,7 +24,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIStream01.class)
   public static class CoreServlet extends VaadinServlet {
   }
 
@@ -34,6 +34,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIStream01().startup();
   }
 }
