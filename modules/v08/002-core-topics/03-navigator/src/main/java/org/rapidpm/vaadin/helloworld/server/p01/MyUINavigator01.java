@@ -16,7 +16,7 @@ import java.util.function.Supplier;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUINavigator01 extends CoreUI {
 
   private Navigator navigator;
 
@@ -83,7 +83,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUINavigator01.class)
   public static class CoreServlet extends VaadinServlet {
   }
 
@@ -93,6 +93,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUINavigator01().startup();
   }
 }
