@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUIComponent01 extends CoreUI {
 
 
   public static class MyComponentA extends VerticalLayout {
@@ -46,7 +46,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIComponent01.class)
   public static class CoreServlet extends VaadinServlet {
   }
 
@@ -56,6 +56,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIComponent01().startup();
   }
 }
