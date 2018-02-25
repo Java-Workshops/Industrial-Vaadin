@@ -15,7 +15,7 @@ import static java.lang.System.out;
 /**
  *
  */
-public class MyUI extends CoreUI {
+public class MyUIErrors01 extends CoreUI {
 
 
   @Override
@@ -85,7 +85,7 @@ public class MyUI extends CoreUI {
 
 
   @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUI.class)
+  @VaadinServletConfiguration(productionMode = false, ui = MyUIErrors01.class)
   public static class CoreServlet extends VaadinServlet {
 
     @Override
@@ -120,6 +120,6 @@ public class MyUI extends CoreUI {
   }
 
   public static void main(String[] args) throws ServletException {
-    new MyUI().startup();
+    new MyUIErrors01().startup();
   }
 }
