@@ -1,31 +1,32 @@
 package org.rapidpm.vaadin.helloworld.server.p03;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.GridLayout;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUIBasic03 extends CoreUI {
+public class MyUIBasic03 extends CoreUIService {
 
-
-  public Button btn(String caption) {
-    Button button = new Button(caption);
-    button.setSizeFull();
-    return button;
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
   }
 
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
 
-  public Supplier<Component> componentSupplier() {
-    return () -> {
+    public Button btn(String caption) {
+      Button button = new Button(caption);
+      button.setSizeFull();
+      return button;
+    }
+
+    @Override
+    public Component get() {
       final GridLayout grid4X4 = new GridLayout(4, 4);
 
       grid4X4.addComponent(btn("AA"), 0, 0);
@@ -38,20 +39,6 @@ public class MyUIBasic03 extends CoreUI {
       grid4X4.addComponent(btn("CB"), 2, 1);
       grid4X4.addComponent(btn("DB"), 3, 1);
       return grid4X4;
-    };
-  }
-
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIBasic03.class)
-  public static class CoreServlet extends VaadinServlet { }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIBasic03().startup();
+    }
   }
 }

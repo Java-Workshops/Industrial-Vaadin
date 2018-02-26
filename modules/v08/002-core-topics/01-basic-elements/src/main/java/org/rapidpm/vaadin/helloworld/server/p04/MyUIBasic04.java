@@ -1,41 +1,32 @@
 package org.rapidpm.vaadin.helloworld.server.p04;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TextField;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import static java.lang.System.out;
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUIBasic04 extends CoreUI {
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return ()-> {
+public class MyUIBasic04 extends CoreUIService {
+
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
+  }
+
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+
+    @Override
+    public Component get() {
       final TextField txt = new TextField("TextFieldName");
       txt.setValue("my Value");
-      txt.addValueChangeListener(e -> {
-        System.out.println("e = " + e);
-      });
+      txt.addValueChangeListener(out::println);
       return txt;
-    };
-  }
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIBasic04.class)
-  public static class CoreServlet extends VaadinServlet { }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return MyUIBasic04.CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIBasic04().startup();
+    }
   }
 }
+
+

@@ -1,30 +1,41 @@
 package org.rapidpm.vaadin.helloworld.server.p02;
 
-import com.vaadin.annotations.PreserveOnRefresh;
-import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.StreamResource;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Image;
 import org.rapidpm.dependencies.core.logger.HasLogger;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.function.Supplier;
+
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  * will crash on OSX and OpenJDK8 (9 and 10 is ok) -> Linkage error
  */
-@PreserveOnRefresh
-public class MyUIStream02 extends CoreUI {
+public class MyUIStream02 extends CoreUIService {
+
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
+  }
+
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
+      final StreamResource streamResource = new StreamResource(new MyImageSource(), "generated" + System.nanoTime() + ".png");
+      streamResource.setCacheTime(0);
+//      streamResource.setMIMEType();
+      return new Image("Dynamic Pic " + System.nanoTime(), streamResource);
+
+    }
+  }
 
   public static class MyImageSource implements StreamResource.StreamSource, HasLogger {
 
@@ -68,30 +79,4 @@ public class MyUIStream02 extends CoreUI {
       }
     }
   }
-
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> {
-      final StreamResource streamResource = new StreamResource(new MyImageSource(), "generated" + System.nanoTime() + ".png");
-      streamResource.setCacheTime(0);
-//      streamResource.setMIMEType();
-      return new Image("Dynamic Pic " + System.nanoTime(), streamResource);
-    };
-  }
-
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIStream02.class)
-  public static class CoreServlet extends VaadinServlet {
-  }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIStream02().startup();
-  }
-
 }

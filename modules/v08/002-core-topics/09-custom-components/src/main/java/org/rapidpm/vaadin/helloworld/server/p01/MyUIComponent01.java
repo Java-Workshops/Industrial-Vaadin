@@ -1,19 +1,26 @@
 package org.rapidpm.vaadin.helloworld.server.p01;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUIComponent01 extends CoreUI {
+public class MyUIComponent01 extends CoreUIService {
 
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
+  }
+
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
+      return new HorizontalLayout(new MyComponentA(), new MyComponentB());
+    }
+  }
 
   public static class MyComponentA extends VerticalLayout {
     private TextField name        = new TextField("Name");
@@ -36,26 +43,5 @@ public class MyUIComponent01 extends CoreUI {
       setCompositionRoot(new VerticalLayout(name, description));
     }
 
-  }
-
-
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> new HorizontalLayout(new MyComponentA(), new MyComponentB());
-  }
-
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIComponent01.class)
-  public static class CoreServlet extends VaadinServlet {
-  }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIComponent01().startup();
   }
 }

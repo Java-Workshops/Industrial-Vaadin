@@ -1,29 +1,31 @@
 package org.rapidpm.vaadin.helloworld.server.p01;
 
 import com.vaadin.annotations.Push;
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.Registration;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.TextField;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import java.time.Instant;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.function.Supplier;
 
+import static java.lang.System.setProperty;
 import static java.util.concurrent.ConcurrentHashMap.newKeySet;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
 @Push
-public class MyUIUIAccess01 extends CoreUI {
+public class MyUIUIAccess01 extends CoreUIService {
+
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
+  }
+
 
   public static final Set<Updater> registrations = newKeySet();
 
@@ -35,7 +37,6 @@ public class MyUIUIAccess01 extends CoreUI {
     registrations.add(updater);
     return (Registration) () -> registrations.remove(updater);
   }
-
 
   public static class MyFormLayout extends FormLayout {
 
@@ -59,11 +60,6 @@ public class MyUIUIAccess01 extends CoreUI {
     }
   }
 
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> new MyFormLayout().register();
-  }
-
   private static final Timer timer = new Timer(true);
 
   static {
@@ -79,21 +75,10 @@ public class MyUIUIAccess01 extends CoreUI {
     );
   }
 
-
-  @WebServlet(
-      urlPatterns = "/*",
-      name = "JumpstartServlet",
-      displayName = "JumpstartServlet",
-      asyncSupported = true)
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIUIAccess01.class)
-  public static class CoreServlet extends VaadinServlet { }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIUIAccess01().startup();
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
+      return new MyFormLayout().register();
+    }
   }
 }

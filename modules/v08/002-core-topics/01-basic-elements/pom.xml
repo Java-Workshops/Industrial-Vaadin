@@ -11,5 +11,13 @@
 
   <artifactId>vaadin-m-v08-002-core-topics-01-basic-elements</artifactId>
 
+<dependencies>
+  <dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>vaadin-m-v08-002-core-topics-00-shared</artifactId>
+    <version>${project.version}</version>
+  </dependency>
+</dependencies>
+
 
 </project>

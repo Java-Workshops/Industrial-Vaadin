@@ -1,26 +1,27 @@
 package org.rapidpm.vaadin.helloworld.server.p02;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.shared.Registration;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.TextField;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import java.util.Set;
-import java.util.function.Supplier;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.System.setProperty;
 import static java.util.concurrent.ConcurrentHashMap.newKeySet;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUIAttach02 extends CoreUI {
+public class MyUIAttach02 extends CoreUIService {
+
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
+  }
 
   public static final Set<Updater> registrations = newKeySet();
 
@@ -28,11 +29,11 @@ public class MyUIAttach02 extends CoreUI {
     void update(String name, Integer age);
   }
 
-
   public static Registration register(Updater updater) {
     registrations.add(updater);
     return (Registration) () -> registrations.remove(updater);
   }
+
 
   public static class MyFormLayout extends FormLayout {
 
@@ -59,13 +60,13 @@ public class MyUIAttach02 extends CoreUI {
     }
   }
 
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> {
 
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
       final TextField name = new TextField("name");
       final TextField age  = new TextField("age");
-
+//
       final Button btn = new Button("sync now");
       btn.addClickListener(e -> registrations.forEach(r -> r.update(name.getValue(),
                                                                     parseInt(age.getValue())
@@ -76,21 +77,7 @@ public class MyUIAttach02 extends CoreUI {
       myForm.register();
 
       return new FormLayout(name, age, btn, myForm);
-    };
+
+    }
   }
-
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIAttach02.class)
-  public static class CoreServlet extends VaadinServlet { }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIAttach02().startup();
-  }
-
 }

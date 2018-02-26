@@ -1,37 +1,26 @@
 package org.rapidpm.vaadin.helloworld.server.p02;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUIBasic02 extends CoreUI {
+public class MyUIBasic02 extends CoreUIService {
 
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> new Button("I am a button");
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
   }
 
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
 
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIBasic02.class)
-  public static class CoreServlet extends VaadinServlet { }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
+    @Override
+    public Component get() {
+      return new Button("I am a button");
+    }
   }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIBasic02().startup();
-  }
-
 }

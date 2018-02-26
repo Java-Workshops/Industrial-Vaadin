@@ -1,43 +1,26 @@
 package org.rapidpm.vaadin.helloworld.server.p02;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.System.setProperty;
 import static java.util.concurrent.ConcurrentHashMap.newKeySet;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUIErrors02 extends CoreUI {
+public class MyUIErrors02 extends CoreUIService {
 
-
-
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> {
-      return new Label("not yet implemented");
-    };
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
   }
 
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIErrors02.class)
-  public static class CoreServlet extends VaadinServlet { }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
+      return new Label("not yet implemented..");
+    }
   }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIErrors02().startup();
-  }
-
 }

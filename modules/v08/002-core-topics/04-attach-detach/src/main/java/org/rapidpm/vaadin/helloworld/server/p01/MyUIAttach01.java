@@ -1,89 +1,38 @@
 package org.rapidpm.vaadin.helloworld.server.p01;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
 import org.rapidpm.dependencies.core.logger.HasLogger;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import java.util.function.Supplier;
+
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUIAttach01 extends CoreUI {
+public class MyUIAttach01 extends CoreUIService {
 
-  public static class DataHolder {
-    private String  name;
-    private Integer age;
-
-    public DataHolder(String name, Integer age) {
-      this.name = name;
-      this.age = age;
-    }
-
-    public String getName() {
-      return name;
-    }
-
-    public void setName(String name) {
-      this.name = name;
-    }
-
-    public Integer getAge() {
-      return age;
-    }
-
-    public void setAge(Integer age) {
-      this.age = age;
-    }
-
-    @Override
-    public String toString() {
-      return "DataHolder{" +
-             "name='" + name + '\'' +
-             ", age=" + age +
-             '}';
-    }
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
   }
 
-
-  public static class MyTextfield extends TextField implements HasLogger {
-    public MyTextfield(String caption) {
-      super(caption);
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    private Supplier<Layout> fields() {
+      return () -> new FormLayout(new MyTextfield("--name--"),
+                                  new MyTextfield("--age--")
+      );
     }
+
+    private boolean visible = true;
 
     @Override
-    public void attach() {
-      super.attach();
-      logger().warning("uiuiui I am touched....");
-    }
-
-    @Override
-    public void detach() {
-      super.detach();
-      logger().warning("dammmmnnnn     feeling soooo lonely now..");
-    }
-  }
-
-
-  private Supplier<Layout> fields() {
-    return () -> new FormLayout(new MyTextfield("--name--"),
-                                new MyTextfield("--age--")
-    );
-  }
-
-  private boolean visible = true;
-
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> {
-      final VerticalLayout layout = new VerticalLayout();
-
+    public Component get() {
+      final VerticalLayout   layout = new VerticalLayout();
       final Supplier<Layout> fields = fields();
       final Layout           f      = fields.get();
+
       f.setId("fieldsID");
 
       final Button button = new Button("work");
@@ -105,20 +54,25 @@ public class MyUIAttach01 extends CoreUI {
 
       layout.addComponents(f, button);
       return layout;
-    };
+    }
   }
 
+  public static class MyTextfield extends TextField implements HasLogger {
+    public MyTextfield(String caption) {
+      super(caption);
+    }
 
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIAttach01.class)
-  public static class CoreServlet extends VaadinServlet { }
+    @Override
+    public void attach() {
+      super.attach();
+      logger().warning("uiuiui I am touched....");
+    }
 
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIAttach01().startup();
+    @Override
+    public void detach() {
+      super.detach();
+      logger().warning("dammmmnnnn     feeling soooo lonely now..");
+    }
   }
 }
+

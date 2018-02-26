@@ -3,7 +3,6 @@ package org.rapidpm.vaadin.helloworld.server.p01;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.*;
 import com.vaadin.ui.*;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

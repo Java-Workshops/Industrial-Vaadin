@@ -12,6 +12,7 @@
   <artifactId>vaadin-m-v08-002-core-topics</artifactId>
   <packaging>pom</packaging>
   <modules>
+    <module>00-shared</module>
     <module>01-basic-elements</module>
     <module>02-binder</module>
     <module>03-navigator</module>
@@ -52,6 +53,12 @@
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client-compiled</artifactId>
+    </dependency>
+
+    <!--For some examples-->
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-push</artifactId>
     </dependency>
   </dependencies>
 

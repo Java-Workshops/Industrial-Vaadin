@@ -1,4 +1,4 @@
-package org.rapidpm.vaadin.helloworld.server;
+package org.rapidpm.vaadin.helloworld.server.p01;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
@@ -45,6 +45,7 @@ public abstract class CoreUI extends UI {
                           servletClass().getSimpleName(),
                           servletClass()
                       ).addMapping("/*")
+                       .setAsyncSupported(true)
                   );
 
     final DeploymentManager manager = Servlets
@@ -60,3 +61,4 @@ public abstract class CoreUI extends UI {
             .start();
   }
 }
+

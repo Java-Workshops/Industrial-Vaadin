@@ -1,48 +1,32 @@
 package org.rapidpm.vaadin.helloworld.server.p01;
 
-import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
  *
  */
-public class MyUINavigator01 extends CoreUI {
+public class MyUINavigator01 extends CoreUIService {
 
-  private Navigator navigator;
-
-
-  @Override
-  protected void init(VaadinRequest request) {
-    super.init(request);
-    navigator = new Navigator(this, this);
-    navigator.addView("", this.new MyViewA());
-    navigator.addView("B", this.new MyViewB());
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
   }
 
-  public class MyViewA extends Composite implements View {
+  public static class MyViewA extends Composite implements View {
 
-    public MyViewA() {
+    public MyViewA(Navigator navigator) {
       final Button buttonBack = new Button("Back");
-      buttonBack.addClickListener(e -> {
-        navigator.navigateTo("");
+      buttonBack.addClickListener(e -> navigator.navigateTo(""));
 
-      });
       final Button buttonB = new Button("B");
-      buttonB.addClickListener(e -> {
-        navigator.navigateTo("B");
-
-      });
-      setCompositionRoot(new HorizontalLayout(buttonBack,buttonB));
+      buttonB.addClickListener(e -> navigator.navigateTo("B"));
+      setCompositionRoot(new HorizontalLayout(buttonBack, buttonB));
     }
 
     @Override
@@ -51,20 +35,14 @@ public class MyUINavigator01 extends CoreUI {
     }
   }
 
-  public class MyViewB extends Composite implements View {
+  public static class MyViewB extends Composite implements View {
 
-    public MyViewB() {
+    public MyViewB(Navigator navigator) {
       final Button buttonBack = new Button("Back");
-      buttonBack.addClickListener(e -> {
-        navigator.navigateTo("");
-
-      });
+      buttonBack.addClickListener(e -> navigator.navigateTo(""));
       final Button buttonA = new Button("A");
-      buttonA.addClickListener(e -> {
-        navigator.navigateTo("");
-
-      });
-      setCompositionRoot(new VerticalLayout(buttonBack,buttonA));
+      buttonA.addClickListener(e -> navigator.navigateTo(""));
+      setCompositionRoot(new VerticalLayout(buttonBack, buttonA));
     }
 
     @Override
@@ -73,26 +51,13 @@ public class MyUINavigator01 extends CoreUI {
     }
   }
 
-
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> {
-      return new MyViewA();
-    };
-  }
-
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUINavigator01.class)
-  public static class CoreServlet extends VaadinServlet {
-  }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUINavigator01().startup();
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
+      final Navigator navigator = new Navigator(UI.getCurrent(), UI.getCurrent());
+      navigator.addView("", new MyViewA(navigator));
+      navigator.addView("B", new MyViewB(navigator));
+      return navigator.getCurrentView().getViewComponent();
+    }
   }
 }

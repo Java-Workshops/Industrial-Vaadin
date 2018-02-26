@@ -1,43 +1,25 @@
 package org.rapidpm.vaadin.helloworld.server.p02;
 
-import com.vaadin.annotations.PreserveOnRefresh;
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**
- * will crash on OSX and OpenJDK8 (9 and 10 is ok) -> Linkage error
- *
- * Build a CustomerForm with i18n support
+
  */
-@PreserveOnRefresh
-public class MyUIi18N02 extends CoreUI {
+public class MyUIi18N02 extends CoreUIService {
 
-
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> new Label("not yet implemented...");
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
   }
 
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = MyUIi18N02.class)
-  public static class CoreServlet extends VaadinServlet {
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
+      return new Label("not yet implemented..");
+    }
   }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new MyUIi18N02().startup();
-  }
-
 }
