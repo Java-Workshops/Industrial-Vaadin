@@ -1,11 +1,10 @@
 package org.rapidpm.vaadin.helloworld.server.p02;
 
-import com.vaadin.ui.*;
+import com.vaadin.ui.Component;
+import com.vaadin.ui.Label;
 import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 
-import static java.lang.Integer.parseInt;
 import static java.lang.System.setProperty;
-import static java.util.concurrent.ConcurrentHashMap.newKeySet;
 import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
 /**

@@ -19,48 +19,31 @@
 
 package org.rapidpm.vaadin.imagecache.mapdb.vaadin;
 
-import com.vaadin.annotations.PreserveOnRefresh;
-import com.vaadin.annotations.Push;
-import com.vaadin.annotations.Title;
-import com.vaadin.annotations.VaadinServletConfiguration;
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Component;
 import org.rapidpm.dependencies.core.logger.HasLogger;
-import org.rapidpm.vaadin.helloworld.server.CoreUI;
+import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 import org.rapidpm.vaadin.imagecache.mapdb.ui.DashboardComponent;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import java.util.function.Supplier;
+import static java.lang.System.setProperty;
+import static org.rapidpm.vaadin.helloworld.server.CoreUIService.MyUI.COMPONENT_SUPPLIER_TO_USE;
 
-@PreserveOnRefresh
-@Title("JumpstartServlet")
-@Push
-public class JumpstartUI extends CoreUI implements HasLogger {
 
-  @Override
-  public Supplier<Component> componentSupplier() {
-    return () -> {
+public class JumpstartUI extends CoreUIService implements HasLogger {
+
+
+  static {
+    setProperty(COMPONENT_SUPPLIER_TO_USE, MySupplier.class.getName());
+  }
+
+
+  public static class MySupplier implements CoreUIService.ComponentSupplier {
+    @Override
+    public Component get() {
       final DashboardComponent components = new DashboardComponent();
       components.postConstruct();
       return components;
-
-    };
+    }
   }
 
-
-  @WebServlet("/*")
-  @VaadinServletConfiguration(productionMode = false, ui = JumpstartUI.class)
-  public static class CoreServlet extends VaadinServlet {
-  }
-
-  @Override
-  public Class<? extends VaadinServlet> servletClass() {
-    return JumpstartUI.CoreServlet.class;
-  }
-
-  public static void main(String[] args) throws ServletException {
-    new JumpstartUI().startup();
-  }
 
 }

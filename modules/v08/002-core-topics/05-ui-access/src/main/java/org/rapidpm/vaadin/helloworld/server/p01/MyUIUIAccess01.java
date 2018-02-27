@@ -27,15 +27,15 @@ public class MyUIUIAccess01 extends CoreUIService {
   }
 
 
-  public static final Set<Updater> registrations = newKeySet();
+  public static final Set<Updater> REGISTRATIONS = newKeySet();
 
   public interface Updater {
     void update(String message);
   }
 
   public static Registration register(Updater updater) {
-    registrations.add(updater);
-    return (Registration) () -> registrations.remove(updater);
+    REGISTRATIONS.add(updater);
+    return (Registration) () -> REGISTRATIONS.remove(updater);
   }
 
   public static class MyFormLayout extends FormLayout {
@@ -60,14 +60,14 @@ public class MyUIUIAccess01 extends CoreUIService {
     }
   }
 
-  private static final Timer timer = new Timer(true);
+  private static final Timer TIMER = new Timer(true);
 
   static {
-    timer.scheduleAtFixedRate(
+    TIMER.scheduleAtFixedRate(
         new TimerTask() {
           @Override
           public void run() {
-            registrations.forEach(updater -> updater.update(Instant.now().toString()));
+            REGISTRATIONS.forEach(updater -> updater.update(Instant.now().toString()));
           }
         },
         3_000,

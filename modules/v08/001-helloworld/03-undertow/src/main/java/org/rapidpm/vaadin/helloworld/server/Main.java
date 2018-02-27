@@ -20,6 +20,9 @@ import static io.undertow.servlet.Servlets.servlet;
  */
 public class Main {
 
+  private Main() {
+  }
+
   public static final String CONTEXT_PATH = "/";
 
   public static void start() {
@@ -45,7 +48,8 @@ public class Main {
                   .addServlets(
                       servlet(
                           MyProjectServlet.class.getSimpleName(),
-                          MyProjectServlet.class).addMapping("/*")
+                          MyProjectServlet.class
+                      ).addMapping("/*")
                   );
 
     DeploymentManager manager = Servlets

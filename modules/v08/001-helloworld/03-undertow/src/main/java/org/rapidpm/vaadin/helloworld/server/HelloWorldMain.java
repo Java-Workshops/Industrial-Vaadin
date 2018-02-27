@@ -10,6 +10,8 @@ import java.util.Optional;
  */
 public class HelloWorldMain {
 
+  private HelloWorldMain() {
+  }
 
   public static void start() {
     main(new String[0]);

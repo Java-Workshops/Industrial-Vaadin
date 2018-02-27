@@ -23,7 +23,6 @@ import org.rapidpm.ddi.DI;
 import org.rapidpm.dependencies.core.logger.HasLogger;
 import org.rapidpm.dependencies.core.logger.Logger;
 import org.rapidpm.dependencies.core.logger.LoggingService;
-import org.rapidpm.frp.functions.CheckedSupplier;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -57,14 +56,13 @@ public class Main implements HasLogger {
 
   public static void deploy(Optional<String[]> args) {
     cliArguments = args;
-    final String packages = Main.class.getPackage().getName().replace("." , "/") + "/" + DI_PACKAGE_FILE;
-    String property = System.getProperty(DI.ORG_RAPIDPM_DDI_PACKAGESFILE , packages);
-    System.setProperty(DI.ORG_RAPIDPM_DDI_PACKAGESFILE , property);
+    final String packages = Main.class.getPackage().getName().replace(".", "/") + "/" + DI_PACKAGE_FILE;
+    String       property = System.getProperty(DI.ORG_RAPIDPM_DDI_PACKAGESFILE, packages);
+    System.setProperty(DI.ORG_RAPIDPM_DDI_PACKAGESFILE, property);
 
     final LocalDateTime dependencyBootstrapStart = LocalDateTime.now();
     DI.bootstrap();
     final LocalDateTime dependencyBootstrapStop = LocalDateTime.now();
-
 
 
     final LocalDateTime deployStart = LocalDateTime.now();
@@ -72,13 +70,13 @@ public class Main implements HasLogger {
     final LocalDateTime deployStop = LocalDateTime.now();
 
 
-    final long startupDDI = between(dependencyBootstrapStart , dependencyBootstrapStop).toMillis();
-    final long startupUndertow = between(deployStart , deployStop).toMillis();
-    final long startupComplete = between(dependencyBootstrapStart , deployStop).toMillis();
+    final long startupDDI      = between(dependencyBootstrapStart, dependencyBootstrapStop).toMillis();
+    final long startupUndertow = between(deployStart, deployStop).toMillis();
+    final long startupComplete = between(dependencyBootstrapStart, deployStop).toMillis();
 
-    final String ddi = String.format("%1$4s" , startupDDI);
-    final String undertow = String.format("%1$4s" , startupUndertow);
-    final String complete = String.format("%1$4s" , startupComplete);
+    final String ddi      = String.format("%1$4s", startupDDI);
+    final String undertow = String.format("%1$4s", startupUndertow);
+    final String complete = String.format("%1$4s", startupComplete);
 
     System.out.println("");
     System.out.println(" ############  Startup finished  = " + deployStop + " ############  ");
@@ -100,13 +98,12 @@ public class Main implements HasLogger {
         LOGGER.warning("delayed shutdown  now = " + LocalDateTime.now());
         stop();
       }
-    } , delayMS);
+    }, delayMS);
   }
 
   public static void stop() {
     MainUndertow.stop(); // TODO make it non-static
   }
-
 
 
 }
