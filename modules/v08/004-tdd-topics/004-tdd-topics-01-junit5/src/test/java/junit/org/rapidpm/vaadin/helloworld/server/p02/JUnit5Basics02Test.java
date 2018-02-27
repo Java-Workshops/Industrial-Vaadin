@@ -2,11 +2,13 @@ package junit.org.rapidpm.vaadin.helloworld.server.p02;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.*;
+import org.junit.jupiter.api.extension.AfterEachCallback;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ExtensionContext.Store;
 import org.rapidpm.dependencies.core.logger.HasLogger;
 import org.rapidpm.frp.model.Pair;
-import org.rapidpm.vaadin.helloworld.server.p01.JUnit5Basics01;
 import org.rapidpm.vaadin.helloworld.server.p02.JUnit5Basics02;
 
 import java.util.function.Function;
@@ -32,7 +34,7 @@ public class JUnit5Basics02Test {
 
 
   private static Function<ExtensionContext, Store> storeFn() {
-   return (exCtx) -> exCtx.getStore(create(JUnit5Basics02Test.class.getSimpleName()));
+    return (exCtx) -> exCtx.getStore(create(JUnit5Basics02Test.class.getSimpleName()));
   }
 
   public static class LifeCycle implements BeforeEachCallback, AfterEachCallback, HasLogger {

@@ -1,5 +1,6 @@
 package org.rapidpm.vaadin.helloworld.server.p04;
 
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.TextField;
 import org.rapidpm.vaadin.helloworld.server.CoreUIService;
