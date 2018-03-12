@@ -26,5 +26,10 @@
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client-compiled</artifactId>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>vaadin-m-v08-002-core-topics-00-shared</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 </project>
