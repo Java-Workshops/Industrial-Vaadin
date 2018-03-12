@@ -13,25 +13,11 @@
   <artifactId>vaadin-m-v10-001-helloworld</artifactId>
 
 
-
-
   <dependencies>
-    <dependency>
-      <groupId>org.rapidpm</groupId>
-      <artifactId>rapidpm-dependencies-core-logger</artifactId>
-      <version>${rapidpm-dependencies.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.rapidpm</groupId>
-      <artifactId>rapidpm-functional-reactive</artifactId>
-      <version>${rapidpm-functional-reactive.version}</version>
-    </dependency>
   </dependencies>
 
 
   <!--Testbench ??-->
-
-
 
 
 </project>

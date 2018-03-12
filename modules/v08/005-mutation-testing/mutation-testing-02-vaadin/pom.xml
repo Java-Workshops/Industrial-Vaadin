@@ -26,6 +26,24 @@
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-client-compiled</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-junit5</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-framework</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-di-ddi</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.rapidpm</groupId>
+      <artifactId>rapidpm-vaadin-addons-modules-testbench</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>

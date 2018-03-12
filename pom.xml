@@ -4,12 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!--<parent>-->
-  <!--<groupId>org.rapidpm</groupId>-->
-  <!--<artifactId>rapidpm-dependencies</artifactId>-->
-  <!--<version>3.5.8</version>-->
-  <!--</parent>-->
-
   <groupId>org.rapidpm.vaadin.workshop</groupId>
   <artifactId>vaadin</artifactId>
   <version>1.0.0-SNAPSHOT</version>
@@ -35,6 +29,7 @@
     <rapidpm-ddi.version>1.0.3</rapidpm-ddi.version>
     <rapidpm-microservice.version>1.0.3</rapidpm-microservice.version>
     <rapidpm-functional-reactive.version>0.5.1</rapidpm-functional-reactive.version>
+    <rapidpm-vaadin-addons.version>0.2.0</rapidpm-vaadin-addons.version>
 
     <wildfly-swarm.version>2018.1.0</wildfly-swarm.version>
     <undertow.version>1.4.20.Final</undertow.version>
@@ -362,7 +357,6 @@
       </dependency>
 
 
-
       <!--Undertow-->
       <dependency>
         <groupId>io.undertow</groupId>
@@ -422,6 +416,35 @@
       </dependency>
 
 
+      <!--Vaadin-->
+      <dependency>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-vaadin-addons-bom</artifactId>
+        <version>${rapidpm-vaadin-addons.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-vaadin-addons-modules-junit5</artifactId>
+        <version>${rapidpm-vaadin-addons.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-vaadin-addons-modules-framework</artifactId>
+        <version>${rapidpm-vaadin-addons.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-vaadin-addons-modules-di-ddi</artifactId>
+        <version>${rapidpm-vaadin-addons.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.rapidpm</groupId>
+        <artifactId>rapidpm-vaadin-addons-modules-testbench</artifactId>
+        <version>${rapidpm-vaadin-addons.version}</version>
+      </dependency>
 
 
     </dependencies>
