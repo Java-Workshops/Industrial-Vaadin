@@ -3,6 +3,7 @@ package org.rapidpm.vaadin.helloworld.server.p01;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import org.rapidpm.vaadin.helloworld.server.CoreUIService;
+import org.rapidpm.vaadin.helloworld.server.shared.DataHolder;
 
 import java.util.stream.Stream;
 
