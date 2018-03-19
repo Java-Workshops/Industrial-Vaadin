@@ -1,7 +1,6 @@
 package org.rapipm.vaadin.industrial.demo.i18n;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -10,11 +9,11 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class PropertyServiceInMemory implements PropertyService {
 
-  private static PropertyServiceInMemory INSTANCE = new PropertyServiceInMemory();
+  private static final PropertyServiceInMemory INSTANCE = new PropertyServiceInMemory();
 
   private final Map<String, String> storage = new ConcurrentHashMap<>();
 
-  public static PropertyServiceInMemory instance(){
+  public static PropertyServiceInMemory instance() {
     return INSTANCE;
   }
 

@@ -25,6 +25,7 @@
     <module>10-i18n</module>
     <module>11-grid</module>
     <module>12-pwa-jumpstart</module>
+    <module>13-combobox</module>
   </modules>
 
   <dependencies>

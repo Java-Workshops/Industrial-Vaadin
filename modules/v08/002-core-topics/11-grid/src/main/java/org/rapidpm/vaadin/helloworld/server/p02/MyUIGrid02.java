@@ -9,7 +9,6 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.components.grid.HeaderRow;
 import org.rapidpm.vaadin.helloworld.server.CoreUIService;
 import org.rapidpm.vaadin.helloworld.server.shared.DataHolder;
 
@@ -117,7 +116,7 @@ public class MyUIGrid02 extends CoreUIService {
 
 
       final VerticalLayout components = new VerticalLayout(filterField, grid);
-      components.setExpandRatio(grid,1 );
+      components.setExpandRatio(grid, 1);
       components.setSizeFull();
       return components;
     }

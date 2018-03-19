@@ -16,7 +16,7 @@
   </modules>
 
   <properties>
-    <vaadin.version>10.0.0.alpha19</vaadin.version>
+    <vaadin.version>10.0.0.alpha21</vaadin.version>
   </properties>
 
   <pluginRepositories>
@@ -66,13 +66,6 @@
       <artifactId>vaadin-lumo-theme</artifactId>
     </dependency>
   </dependencies>
-
-
-
-
-
-
-
 
   <build>
     <plugins>
