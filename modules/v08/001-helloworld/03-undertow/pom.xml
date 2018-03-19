@@ -12,6 +12,12 @@
   <artifactId>vaadin-m-v08-001-helloworld-03-undertow</artifactId>
 
   <dependencies>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>vaadin-m-v08-001-helloworld-00-vaadin-app</artifactId>
+    </dependency>
+
     <!--Infrastructure-->
     <dependency>
       <groupId>io.undertow</groupId>

@@ -34,34 +34,5 @@
       <artifactId>undertow-websockets-jsr</artifactId>
     </dependency>
     <!--Undertow-->
-
-    <!--APM - Stagemonitor-->
-    <!--APM -->
-    <dependency>
-      <groupId>org.stagemonitor</groupId>
-      <artifactId>stagemonitor-web-servlet</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.stagemonitor</groupId>
-      <artifactId>stagemonitor-tracing</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.stagemonitor</groupId>
-      <artifactId>stagemonitor-jvm</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.stagemonitor</groupId>
-      <artifactId>stagemonitor-os</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.stagemonitor</groupId>
-      <artifactId>stagemonitor-tracing-elasticsearch</artifactId>
-      <optional>true</optional>
-    </dependency>
-
   </dependencies>
 </project>

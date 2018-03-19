@@ -47,8 +47,8 @@ public class Main {
                   .setDefaultEncoding("UTF-8")
                   .addServlets(
                       servlet(
-                          MyProjectServlet.class.getSimpleName(),
-                          MyProjectServlet.class
+                          MyUI.MyProjectServlet.class.getSimpleName(),
+                          MyUI.MyProjectServlet.class
                       ).addMapping("/*")
                   );
 

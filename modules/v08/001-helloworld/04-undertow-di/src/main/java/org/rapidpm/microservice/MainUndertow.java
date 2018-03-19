@@ -29,7 +29,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static io.undertow.servlet.Servlets.*;
-import static org.rapidpm.microservice.ServletContainerFunctions.addStagemonitor;
 
 /**
  * Copyright (C) 2010 RapidPM
@@ -136,10 +135,6 @@ public class MainUndertow {
         .setContextPath(MYAPP)
         .setDeploymentName("ROOT" + ".war")
         .setDefaultEncoding("UTF-8");
-
-
-    final Boolean stagemonitorActive = Boolean.valueOf(System.getProperty(STAGEMONITOR_ACTIVE_PROPERTY, "false"));
-    if (stagemonitorActive) addStagemonitor().apply(deploymentInfo);
 
     return deploymentInfo
         .addListeners(listenerInfos)

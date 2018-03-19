@@ -12,6 +12,13 @@
   <artifactId>vaadin-m-v08-001-helloworld-01-jetty</artifactId>
   <packaging>war</packaging>
 
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>vaadin-m-v08-001-helloworld-00-vaadin-app</artifactId>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
       <plugin>
